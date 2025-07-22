@@ -1,0 +1,71 @@
+#include "main.h"
+
+/**
+ * _printf - Custom implementation of the standard printf function
+ * @format: Format string containing the characters and specifiers
+ * Return: Total number of characters printed
+ */
+int _printf(const char *format, ...)
+{
+	va_list args;
+	int i = 0, len = 0;
+
+	va_start(args, format);
+
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			if (!format[i]) break;
+
+			switch (format[i])
+			{
+				case 'c':
+					len += print_char(va_arg(args, int));
+					break;
+				case 's':
+					len +=
+					    print_string(va_arg(args, char *));
+					break;
+				case 'd':
+				case 'i':
+					len += print_int(va_arg(args, int));
+					break;
+				case 'u':
+					len += print_unsigned(
+					    va_arg(args, unsigned int));
+					break;
+				case 'o':
+					len += print_octal(
+					    va_arg(args, unsigned int));
+					break;
+				case 'x':
+					len += print_hex(
+					    va_arg(args, unsigned int));
+					break;
+				case 'X':
+					len += print_hex(
+					    va_arg(args, unsigned int));
+					break;
+				case 'p':
+					len +=
+					    print_pointer(va_arg(args, void *));
+					break;
+				case '%':
+					len += print_char('%');
+					break;
+				default:
+					len += print_char(format[i]);
+					break;
+			}
+			i++;
+		}
+		else
+		{
+			len += print_char(format[i]);
+		}
+	}
+	va_end(args);
+	return len;
+}
