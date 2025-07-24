@@ -63,6 +63,7 @@ int _printf(const char *format, ...)
 					 * Unknown specifier, print
 					 * "%<character>"
 					 */
+					len += print_char('%');
 					len += print_char(format[i]);
 					break;
 			}
