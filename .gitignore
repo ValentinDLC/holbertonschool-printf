@@ -1,0 +1,23 @@
+# Fichiers exécutables
+*.exe
+*.out
+a.out
+printf
+
+# Fichiers objets
+*.o
+*.obj
+
+# Fichiers de sauvegarde
+*~
+*.swp
+*.swo
+
+# Dossiers de build
+build/
+bin/
+
+# Fichiers IDE
+.vscode/
+.idea/
+*.code-workspace
