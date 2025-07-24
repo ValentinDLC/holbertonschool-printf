@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * print_hex - Prints an unsigned integer in hexadecimal format
- * @n: The unsigned integer to print
- * @uppercase: Flag to determine case (1 for uppercase, 0 for lowercase)
+ * print_hex - Prints an unsigned int in hexadecimal format
+ * @n: The number to print
+ * @uppercase: 1 for uppercase hex, 0 for lowercase
  *
- * Return: The number of characters printed
+ * Return: Number of characters printed
  */
 int print_hex(unsigned int n, int uppercase)
 {
@@ -14,5 +14,6 @@ int print_hex(unsigned int n, int uppercase)
 
 	if (n / 16) len += print_hex(n / 16, uppercase);
 	len += print_char(hex_digits[n % 16]);
-	return (len);
+
+	return len;
 }

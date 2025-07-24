@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * print_char - Prints a single character to stdout
+ * print_char - Prints a character to standard output
  * @c: The character to print
  *
- * Return: The number of characters printed (1 on success)
+ * Return: Number of bytes written (always 1)
  */
 int print_char(char c) { return (write(1, &c, 1)); }

@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * print_string - Prints a string to standard output.
- * @s: The string to print.
+ * print_string - Prints a string to stdout
+ * @s: The string to print
  *
- * Return: The number of characters printed.
+ * Return: Number of characters printed
  */
 int print_string(const char *s)
 {
@@ -12,11 +12,7 @@ int print_string(const char *s)
 
 	if (!s) s = "(null)";
 
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
+	while (s[i]) write(1, &s[i++], 1);
 
 	return (i);
 }

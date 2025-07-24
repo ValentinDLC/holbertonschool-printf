@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
- * _printf - Custom implementation of the standard printf function
- * @format: Format string containing the characters and specifiers
- * Return: Total number of characters printed
+ * _printf - Custom function that mimics printf
+ * @format: The format string to be parsed
+ *
+ * Return: Number of characters printed
  */
 int _printf(const char *format, ...)
 {
@@ -56,6 +57,8 @@ int _printf(const char *format, ...)
 					len += print_char('%');
 					break;
 				default:
+					// Specifier inconnu, on affiche
+					// "%<caractère>"
 					len += print_char(format[i]);
 					break;
 			}
@@ -64,8 +67,10 @@ int _printf(const char *format, ...)
 		else
 		{
 			len += print_char(format[i]);
+			i++;
 		}
 	}
+
 	va_end(args);
 	return len;
 }

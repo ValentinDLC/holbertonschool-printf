@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * print_int - Prints an integer
+ * print_int - Prints an integer to standard output
  * @n: The integer to print
  *
- * Return: The number of characters printed
+ * Return: Number of characters printed
  */
 int print_int(int n)
 {
@@ -21,5 +21,6 @@ int print_int(int n)
 
 	if (num / 10) len += print_int(num / 10);
 	len += print_char((num % 10) + '0');
-	return (len);
+
+	return len;
 }

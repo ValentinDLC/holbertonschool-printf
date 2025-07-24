@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * print_pointer - Prints a pointer address in hexadecimal format
+ * print_pointer - Prints the memory address of a pointer
  * @ptr: The pointer to print
  *
- * Return: The number of characters printed
+ * Return: Number of characters printed
  */
 int print_pointer(void *ptr)
 {
@@ -14,9 +14,7 @@ int print_pointer(void *ptr)
 
 	len += print_string("0x");
 	if (addr == 0)
-	{
 		len += print_char('0');
-	}
 	else
 	{
 		unsigned long tmp = addr;
@@ -26,14 +24,11 @@ int print_pointer(void *ptr)
 		while (tmp)
 		{
 			int digit = tmp % 16;
-
 			buffer[digits++] = "0123456789abcdef"[digit];
 			tmp /= 16;
 		}
-		for (i = digits - 1; i >= 0; i--)
-		{
-			len += print_char(buffer[i]);
-		}
+
+		for (i = digits - 1; i >= 0; i--) len += print_char(buffer[i]);
 	}
-	return (len);
+	return len;
 }
