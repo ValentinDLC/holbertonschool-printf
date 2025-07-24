@@ -57,8 +57,10 @@ int _printf(const char *format, ...)
 					len += print_char('%');
 					break;
 				default:
-					// Specifier inconnu, on affiche
-					// "%<caractère>"
+					/*
+					 * Unknown specifier, print
+					 * "%<character>"
+					 */
 					len += print_char(format[i]);
 					break;
 			}
