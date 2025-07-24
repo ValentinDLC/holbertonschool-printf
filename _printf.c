@@ -42,11 +42,11 @@ int _printf(const char *format, ...)
 					break;
 				case 'x':
 					len += print_hex(
-					    va_arg(args, unsigned int));
+					    va_arg(args, unsigned int), 0);
 					break;
 				case 'X':
 					len += print_hex(
-					    va_arg(args, unsigned int));
+					    va_arg(args, unsigned int), 1);
 					break;
 				case 'p':
 					len +=
