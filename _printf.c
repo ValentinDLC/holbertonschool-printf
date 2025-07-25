@@ -13,14 +13,20 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	if (format == NULL) return (-1);
+	if (format == NULL)
+	{
+		return (-1);
+	}
 
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			if (!format[i]) break;
+			if (!format[i])
+			{
+				break;
+			}
 
 			switch (format[i])
 			{
@@ -77,5 +83,5 @@ int _printf(const char *format, ...)
 	}
 
 	va_end(args);
-	return len;
+	return (len);
 }

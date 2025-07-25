@@ -28,7 +28,10 @@ int print_pointer(void *ptr)
 			tmp /= 16;
 		}
 
-		for (i = digits - 1; i >= 0; i--) len += print_char(buffer[i]);
+		for (i = digits - 1; i >= 0; i--)
+		{
+			len += print_char(buffer[i]);
+		}
 	}
-	return len;
+	return (len);
 }

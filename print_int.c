@@ -19,10 +19,14 @@ int print_int(int n)
 	else
 		num = n;
 
-	if (num / 10) len += print_int(num / 10);
+	if (num / 10)
+	{
+		len += print_int(num / 10);
+	}
+
 	len += print_char((num % 10) + '0');
 
-	return len;
+	return (len);
 }
 
 /**
@@ -35,8 +39,12 @@ int print_unsigned_helper(unsigned int n)
 {
 	int len = 0;
 
-	if (n / 10) len += print_unsigned_helper(n / 10);
+	if (n / 10)
+	{
+		len += print_unsigned_helper(n / 10);
+	}
+
 	len += print_char((n % 10) + '0');
 
-	return len;
+	return (len);
 }

@@ -12,8 +12,12 @@ int print_hex(unsigned int n, int uppercase)
 	int len = 0;
 	char *hex_digits = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
 
-	if (n / 16) len += print_hex(n / 16, uppercase);
+	if (n / 16)
+	{
+		len += print_hex(n / 16, uppercase);
+	}
+
 	len += print_char(hex_digits[n % 16]);
 
-	return len;
+	return (len);
 }
