@@ -1,22 +1,42 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <limits.h>
 #include <stdarg.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-/* Prototype for _printf */
+/**
+ * struct specifier_f - structure for format specifiers
+ * @specifier: the format specifier character
+ * @func: pointer to the function that handles this specifier
+ *
+ * Description: This structure maps format specifiers to their
+ * corresponding handler functions
+ */
+typedef struct specifier_f
+{
+	char specifier;
+	int (*func)(va_list);
+} get_specifier;
+
+/* Specifier function selector */
+int (*get_specifier_func(char specifier))(va_list);
+
+/* Main printf function */
 int _printf(const char *format, ...);
 
-/* Prototypes for display functions */
-int print_char(char c);
-int print_string(const char *s);
-int print_percent(void);
-int print_int(int n);
-int print_unsigned(unsigned int n);
-int print_unsigned_helper(unsigned int n);
-int print_octal(unsigned int n);
-int print_hex(unsigned int n, int uppercase);
-int print_pointer(void *ptr);
+/* Utility function */
+int _putchar(char c);
 
-#endif /* MAIN_H */
+/* Format specifier handler functions */
+int print_char(va_list args);
+int print_string(va_list args);
+int print_int(va_list args);
+int print_percent(va_list args);
+
+/* Helper functions */
+int print_number(unsigned int num);
+
+#endif

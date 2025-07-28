@@ -1,9 +1,9 @@
-.TH _PRINTF 3 "July" "_printf man page"
+.TH _PRINTF 3 "July 2025" "Version 1.0" "Custom Printf Manual"
 .SH NAME
 _printf \- formatted output conversion
 .SH SYNOPSIS
 .B #include "main.h"
-.sp
+.PP
 .BI "int _printf(const char *" format ", ...);"
 .SH DESCRIPTION
 The
@@ -12,68 +12,110 @@ function produces output according to a
 .I format
 as described below. The
 .BR _printf ()
-function writes output to stdout, the standard output stream.
-.sp
+function writes output to
+.IR stdout ,
+the standard output stream.
+.PP
 This function writes the output under the control of a
 .I format
 string that specifies how subsequent arguments are converted for output.
-.sp
-.SS Format of the format string
-The format string is a character string, beginning and ending in its initial shift state, if any. The format string is composed of zero or more directives: ordinary characters (not %), which are copied unchanged to the output stream; and conversion specifications, each of which results in fetching zero or more subsequent arguments.
-.sp
-Each conversion specification is introduced by the character %, and ends with a conversion specifier.
-.sp
-.SS Conversion specifiers
-A character that specifies the type of conversion to be applied. The conversion specifiers and their meanings are:
-.sp
+.SH RETURN VALUE
+Upon successful return, this function returns the number of characters
+printed (excluding the null byte used to end output to strings).
+.PP
+If the
+.I format
+string is NULL, the function returns -1.
+.SH FORMAT STRING
+The format string is a character string, beginning and ending in its
+initial shift state, if any. The format string is composed of zero or
+more directives: ordinary characters (not %), which are copied unchanged
+to the output stream; and conversion specifications, each of which results
+in fetching zero or more subsequent arguments.
+.PP
+Each conversion specification is introduced by the character %, and ends
+with a conversion specifier.
+.SH CONVERSION SPECIFIERS
+A character that specifies the type of conversion to be applied. The
+conversion specifiers and their meanings are:
 .TP
 .B c
-The int argument is converted to an unsigned char, and the resulting character is written.
+The
+.I int
+argument is converted to an
+.IR "unsigned char" ,
+and the resulting character is written.
 .TP
 .B s
-The const char * argument is expected to be a pointer to an array of character type (pointer to a string). Characters from the array are written up to (but not including) a terminating null byte.
+The
+.I "const char *"
+argument is expected to be a pointer to an array of character type
+(pointer to a string). Characters from the array are written up to
+(but not including) a terminating null byte ('\\0'). If the argument
+is NULL, the string "(null)" is printed instead.
 .TP
 .B d, i
-The int argument is converted to signed decimal notation.
-.TP
-.B u
-The unsigned int argument is converted to unsigned decimal notation.
-.TP
-.B o
-The unsigned int argument is converted to unsigned octal notation.
-.TP
-.B x
-The unsigned int argument is converted to unsigned hexadecimal notation (using abcdef).
-.TP
-.B X
-The unsigned int argument is converted to unsigned hexadecimal notation (using ABCDEF).
-.TP
-.B p
-The void * pointer argument is printed in hexadecimal notation.
+The
+.I int
+argument is converted to signed decimal notation.
 .TP
 .B %
-A '%' is written. No argument is converted. The complete conversion specification is '%%'.
-.SH RETURN VALUE
-Upon successful return, this function returns the number of characters printed (excluding the null byte used to end output to strings).
-.sp
-If an error occurs, a negative value is returned.
+A '%' is written. No argument is converted. The complete conversion
+specification is '%%'.
 .SH EXAMPLES
-To print the string "Hello, World!" followed by a new line:
-.sp
-.nf
-.RS
-_printf("Hello, World!\\n");
-.RE
-.fi
-.sp
-To print an integer:
-.sp
-.nf
-.RS
-_printf("The number is %d\\n", 42);
-.RE
-.fi
-.SH SEE ALSO
+.PP
+Print a simple message:
+.PP
+.in +4n
+.EX
+_printf("Hello World\\n");
+.EE
+.in
+.PP
+Print a string with format specifiers:
+.PP
+.in +4n
+.EX
+_printf("Name: %s, Age: %d\\n", "John", 25);
+.EE
+.in
+.PP
+Print a character and percentage:
+.PP
+.in +4n
+.EX
+_printf("Grade: %c (100%%)\\n", 'A');
+.EE
+.in
+.SH NOTES
+This implementation does not handle:
+.IP \(bu 2
+Flag characters
+.IP \(bu 2
+Field width
+.IP \(bu 2
+Precision
+.IP \(bu 2
+Length modifiers
+.IP \(bu 2
+Buffer handling optimization
+.PP
+Unknown conversion specifiers are printed literally as '%' followed by
+the unknown character.
+.SH BUGS
+The function does not handle all edge cases that the standard
 .BR printf (3)
+function handles.
+.PP
+Very large integers near the limits of
+.I int
+may not be handled correctly in all cases.
+.SH SEE ALSO
+.BR printf (3),
+.BR sprintf (3),
+.BR fprintf (3),
+.BR write (2)
 .SH AUTHORS
-[Dardenne
+Written for Holberton School Printf Project.
+.SH COPYRIGHT
+This is free software; you are free to change and redistribute it.
